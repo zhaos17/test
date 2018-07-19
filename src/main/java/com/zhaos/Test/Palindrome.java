@@ -54,6 +54,10 @@ public class Palindrome {
         return "";//表示字符串中无回文子串
     }
 
+
+    /**
+     * 这块是已经理解的代码
+     */
     private static int maxLen = 0;
 
     private static String sub = "";
