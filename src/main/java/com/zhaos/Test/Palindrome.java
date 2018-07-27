@@ -13,7 +13,8 @@ public class Palindrome {
     public static void main(String[] args) {
 //        System.out.println(firstMethod("asdfghjk"));
 //        System.out.println(thirdLongestPalindrome("abcbcddbc"));
-        System.out.println(thirdLongestPalindrome("cabccbada"));
+//        System.out.println(thirdLongestPalindrome("cabccbada"));
+        System.out.println(findStr("0123456654"));
     }
 
     /**
@@ -62,33 +63,40 @@ public class Palindrome {
 
     private static String sub = "";
 
-    public static String longestPalindrome(String s) {
-        if(s.length() <= 1)
-            return s;
-
-        for(int i = 0;i < s.length()-1;i++){
-
-            findLongestPalindrome(s,i,i);//单核回文
-            findLongestPalindrome(s,i,i+1);//双核回文
+    public static String findStr (String str) {
+        if (str.length() <= 1) {
+            return str;
+        } else {
+            for (int i = 0; i < str.length(); i++) {
+                // 单核
+                secondMethod(str,i,i);
+                // 双核
+                secondMethod(str,i,i+1);
+            }
         }
         return sub;
     }
-    public static  void findLongestPalindrome(String s,int low,int high){
-        while (low >= 0 && high <= s.length()-1){
-            if(s.charAt(low) == s.charAt(high)){
-                if(high - low + 1 > maxLen){
-                    maxLen = high - low + 1;
-                    sub = s.substring(low , high+1);
+
+    /**
+     * 计算最长回文
+     *
+     * @param str
+     * @param low
+     * @param high
+     * @return
+     */
+    public static void secondMethod (String str,int low,int high) {
+        for (;low >= 0 && high < str.length();low--,high++) {
+            if (str.charAt(low) == str.charAt(high)) {
+                if (high-low+1 > maxLen) {
+                    maxLen = high-low+1;
+                    sub = str.substring(low,high+1);
                 }
-                low --;//向两边扩散找当前字符为中心的最大回文子串
-                high ++;
-            }
-            else
+            } else {
                 break;
+            }
         }
-
     }
-
 
     /**
      * O(n)时间复杂度方法——Manacher算法
