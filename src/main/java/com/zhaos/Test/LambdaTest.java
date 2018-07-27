@@ -11,7 +11,6 @@ public class LambdaTest {
         LambdaTest tester = new LambdaTest();
 
         // 类型声明
-
         MathOperation addition = (int a, int b) -> a + b;
 
         // 不用类型声明
